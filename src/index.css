@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== kisansathi.ai Design System CSS ===== */
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle organic background for AI speaking */
+.bg-organic {
+  background-image: radial-gradient(circle at top right, rgba(165, 243, 154, 0.15) 0%, transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(165, 243, 154, 0.1) 0%, transparent 50%);
+}
+
+/* ===== Voice Orb Animations ===== */
+
+/* Idle state: subtle slow pulse */
+.orb-glow {
+  box-shadow: 0 0 30px rgba(134, 220, 83, 0.3);
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .8;
+    transform: scale(1.05);
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Listening state: pulsing rings */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.pulse-ring-1 { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
+.pulse-ring-2 { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite 0.6s; }
+.pulse-ring-3 { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite 1.2s; }
+
+@keyframes pulse-orb-active {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(188, 220, 18, 0.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(188, 220, 18, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(188, 220, 18, 0); }
+}
+.pulse-orb-active {
+  animation: pulse-orb-active 2s infinite;
+}
+
+/* Listening state: voice waveform bars */
+@keyframes waveform {
+  0%, 100% { height: 12px; }
+  50% { height: 48px; }
+}
+.animate-waveform-1 { animation: waveform 1s ease-in-out infinite 0.1s; }
+.animate-waveform-2 { animation: waveform 1s ease-in-out infinite 0.3s; }
+.animate-waveform-3 { animation: waveform 1s ease-in-out infinite 0.5s; }
+.animate-waveform-4 { animation: waveform 1s ease-in-out infinite 0.2s; }
+.animate-waveform-5 { animation: waveform 1s ease-in-out infinite 0.4s; }
+
+/* Processing state: orb pulse */
+@keyframes pulse-processing {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(188, 220, 18, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(188, 220, 18, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(188, 220, 18, 0); }
+}
+.pulse-processing {
+  animation: pulse-processing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Processing state: loading dots */
+@keyframes loading-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+.loading-dot {
+  animation: loading-bounce 1.4s infinite ease-in-out both;
+}
+.loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* Processing state: fade-in-up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+/* AI Speaking state: wave bars inside orb */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.wave-bar {
+  animation: wave 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
+.wave-delay-1 { animation-delay: 0.0s; }
+.wave-delay-2 { animation-delay: 0.2s; }
+.wave-delay-3 { animation-delay: 0.4s; }
+.wave-delay-4 { animation-delay: 0.1s; }
+.wave-delay-5 { animation-delay: 0.3s; }
+
+/* AI Speaking state: orb pulse */
+.orb-pulse {
+  animation: pulse-ring-speaking 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse-ring-speaking {
+  0% { box-shadow: 0 0 0 0 rgba(188, 220, 18, 0.6); }
+  70% { box-shadow: 0 0 0 24px rgba(188, 220, 18, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(188, 220, 18, 0); }
+}
+
+/* Interrupted state: single pulse */
+@keyframes pulse-border-once {
+  0% { box-shadow: 0 0 0 0 rgba(134, 220, 83, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(134, 220, 83, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(134, 220, 83, 0); }
+}
+.pulse-once {
+  animation: pulse-border-once 1.5s ease-out forwards;
+}
+
+/* Soil shadow from design system */
+.soil-shadow {
+  box-shadow: 0 4px 20px rgba(39, 111, 37, 0.08);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c0cab4; border-radius: 4px; }
+
+/* ===== Transcript UI ===== */
+.transcript-container {
+  /* Hide scrollbar for a cleaner look but keep it scrollable */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  /* Top mask for fading out text as it scrolls up */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.transcript-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* ===== Continuous Call UI Animations ===== */
+
+/* Call status bar */
+.call-status-bar {
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(44, 105, 0, 0.12);
+}
+
+/* Connected status dot pulse */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.call-status-pulse {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* End call button subtle glow */
+.end-call-btn {
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+}
+.end-call-btn:hover {
+  box-shadow: 0 6px 28px rgba(186, 26, 26, 0.35) !important;
+}
+
+/* Call ended farewell fade-in */
+@keyframes callEndedFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.call-ended-fade-in {
+  animation: callEndedFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Safe area for bottom */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .pulse-ring-1, .pulse-ring-2, .pulse-ring-3,
+  .pulse-orb-active, .pulse-processing,
+  .animate-waveform-1, .animate-waveform-2,
+  .animate-waveform-3, .animate-waveform-4, .animate-waveform-5,
+  .wave-bar, .orb-pulse, .loading-dot, .pulse-once,
+  .call-status-pulse {
+    animation: none !important;
+  }
+  .fade-in-up {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}

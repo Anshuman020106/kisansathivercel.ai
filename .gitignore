@@ -1,0 +1,10 @@
+﻿node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+*.d.ts
+stitch_export/
+*.zip
+.vscode/
