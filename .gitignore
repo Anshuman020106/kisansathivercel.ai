@@ -8,3 +8,7 @@ dist/
 stitch_export/
 *.zip
 .vscode/
+# Python
+__pycache__/
+*.pyc
+*.mp3
