@@ -1,6 +1,8 @@
 import { useState, useCallback, useRef } from "react";
 import type { VoiceState, ProcessingIndicator, ConversationTurn } from "../types";
 
+/// <reference types="vite/client" />
+
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:8000";
 
 /** Delay (ms) before auto-restarting mic after AI finishes speaking */
